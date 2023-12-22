@@ -16,12 +16,19 @@ async function getPage(url) {
 
 app.post("/api", async (req, res) => {
     const url = req.body.url
-    const html = await getPage(url);
-    fs.writeFileSync('demo.html', html)
-    res.status(200).json({
-        message: "success",
-        payload: html
-    })
+    try {
+        const html = await getPage(url);
+        //fs.writeFileSync('demo.html', html)
+        res.status(200).json({
+            message: "Success",
+            payload: html
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: "Internal-Server-Error"
+        })
+    }
+
 })
 
 app.get('/', async (req, res) => {
