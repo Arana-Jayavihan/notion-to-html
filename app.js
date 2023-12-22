@@ -7,7 +7,7 @@ const app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded())
 app.use(bodyParser.urlencoded({ extended: false }))
-const port = 3001
+const port = process.env.PORT || 3000;
 
 async function getPage(url) {
     const { title, icon, cover, html } = await NotionPageToHtml.convert(url);
@@ -30,6 +30,6 @@ app.get('/', async (req, res) => {
     })
 })
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
     console.log(`Server listening on port ${port}`)
 })
