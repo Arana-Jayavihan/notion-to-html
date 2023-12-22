@@ -15,9 +15,9 @@ async function getPage(url) {
 }
 
 app.post("/api", async (req, res) => {
-    console.log(req.body)
     const url = req.body.url
     const html = await getPage(url);
+    fs.writeFileSync('demo.html', html)
     res.status(200).json({
         message: "success",
         payload: html
