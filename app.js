@@ -24,6 +24,12 @@ app.post("/api", async (req, res) => {
     })
 })
 
+app.get('/', async (req, res) => {
+    res.status(200).json({
+        message: "This is Default"
+    })
+})
+
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`)
 })
